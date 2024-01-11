@@ -1,10 +1,6 @@
 import sys
 
-def main():
-    # !TODO: Add your code here
-    filename = sys.argv[1]
-    with open(filename, 'r') as f:
-        lines = f.readlines()
+def part1(input: list[str]):
     # problem 1
     sum = 0
     max_num = {
@@ -12,7 +8,7 @@ def main():
             "green": 13,
             "blue": 14,
             }
-    for line in lines:
+    for line in input:
         line = line.strip()
         game, states = line.split(': ')
         game_id = int(game.split(' ')[1]) 
@@ -30,10 +26,12 @@ def main():
         if satified:
             sum += game_id
 
-    print(sum)
+    print("Part 1:", sum)
+
+def part2(input: list[str]):
     # problem 2
     sum2 = 0
-    for line in lines:
+    for line in input:
         colors = {
                 "red": 0,
                 "green": 0,
@@ -50,7 +48,16 @@ def main():
                 colors[color] = max(colors[color], num)
 
         sum2 += colors["red"] * colors["green"] * colors["blue"]
-    print(sum2)
+    print("Part 2:", sum2)
+
+def main():
+    # !TODO: Add your code here
+    filename = sys.argv[1]
+    with open(filename, 'r') as f:
+        lines = f.readlines()
+
+    part1(lines)
+    part2(lines)
 
 if __name__ == '__main__':
     main()
